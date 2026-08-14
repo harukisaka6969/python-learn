@@ -87,6 +87,38 @@ a {
   white-space: nowrap;
 }
 
+.profile-switch {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--paper);
+  flex: 0 0 auto;
+}
+
+.profile-switch__btn {
+  border: none;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.profile-switch__btn:hover {
+  color: var(--ink);
+}
+
+.profile-switch__btn[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--paper);
+  font-weight: 700;
+}
+
 .kernel-badge {
   display: inline-flex;
   align-items: center;
@@ -146,6 +178,12 @@ a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+  .app-header__subtitle {
+    display: none;
+  }
+  .profile-switch__btn {
+    padding: 5px 8px;
   }
 }
 
