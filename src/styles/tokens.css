@@ -1,0 +1,14 @@
+:root {
+  --paper: #f6f4ee;
+  --ink: #1a1a17;
+  --ink-soft: #57534a;
+  --line: #d8d3c6;
+  --grid: #e8e3d6;
+  --accent: #3a5a40; /* 深緑：インク */
+  --accent-2: #a63d40; /* 朱：訂正・エラー */
+  --code-bg: #20211d;
+  --code-fg: #e8e6de;
+  --mono: "SFMono-Regular", ui-monospace, Consolas, monospace;
+  --serif: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --sans: "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+}
