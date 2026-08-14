@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import type { Chapter } from "../content/types";
 import { useProgress } from "../progress/ProgressProvider";
+import { chapterStats } from "../progress/stats";
 
 /**
  * 右端の進捗ドット。現在の章のレッスンをドットで並べ、完了済みは塗りつぶし、
@@ -11,9 +12,13 @@ import { useProgress } from "../progress/ProgressProvider";
 export default function ProgressRail({ chapter, currentLessonId }: { chapter: Chapter; currentLessonId: string }) {
   const { isDone } = useProgress();
   const navigate = useNavigate();
+  const stats = chapterStats(chapter, isDone);
 
   return (
     <aside className="progress-rail" aria-label={`${chapter.title}の進捗`}>
+      <span className="progress-rail__count">
+        {stats.done}/{stats.total}
+      </span>
       {chapter.lessons.map((lesson) => (
         <button
           key={lesson.id}

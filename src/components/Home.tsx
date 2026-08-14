@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { CHAPTERS, firstLessonId } from "../content/index";
+import { PROFILES, useProgress } from "../progress/ProgressProvider";
+import { chapterStats, overallStats } from "../progress/stats";
+import ProgressBar from "./ProgressBar";
 
-/** トップページ：ヒーロー＋章一覧カード。最初のレッスンへの導線を用意する。 */
+/** トップページ：ヒーロー＋全体進捗＋章一覧カード（各章の進捗つき）。最初のレッスンへの導線を用意する。 */
 export default function Home() {
   const firstId = firstLessonId();
+  const { isDone, profile } = useProgress();
+  const overall = overallStats(isDone);
+  const profileLabel = PROFILES.find((p) => p.id === profile)?.label ?? profile;
 
   return (
     <div className="hero">
@@ -19,14 +25,33 @@ export default function Home() {
           </>
         )}
       </p>
+
+      <div className="hero__progress">
+        <div className="hero__progress-label">
+          <span>{profileLabel}の進捗</span>
+          <span>
+            {overall.done} / {overall.total} レッスン完了（{overall.pct}%）
+          </span>
+        </div>
+        <ProgressBar done={overall.done} total={overall.total} />
+      </div>
+
       <div className="hero__chapters">
         {CHAPTERS.map((chapter) => {
           const first = chapter.lessons[0];
+          const stats = chapterStats(chapter, isDone);
           return (
             <Link className="hero-chapter-card" to={`/lesson/${first.id}`} key={chapter.id}>
+              {stats.pct === 100 && <span className="hero-chapter-card__badge">✓ 完了</span>}
               <div className="hero-chapter-card__no">第{chapter.no}章</div>
               <div className="hero-chapter-card__title">{chapter.title}</div>
               <p className="hero-chapter-card__summary">{chapter.summary}</p>
+              <div className="hero-chapter-card__progress">
+                <ProgressBar done={stats.done} total={stats.total} size="sm" />
+                <span className="hero-chapter-card__count">
+                  {stats.done}/{stats.total}
+                </span>
+              </div>
             </Link>
           );
         })}
