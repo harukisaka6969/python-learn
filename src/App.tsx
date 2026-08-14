@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import ProgressRail from "./components/ProgressRail";
+import GrowthBird from "./components/GrowthBird";
 import Home from "./components/Home";
 import LessonView from "./components/LessonView";
 import { findLessonEntry } from "./content/index";
@@ -50,6 +51,7 @@ export default function App() {
         </main>
         <CurrentLessonRail />
       </div>
+      <GrowthBird />
     </>
   );
 }
