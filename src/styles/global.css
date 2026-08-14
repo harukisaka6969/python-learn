@@ -836,6 +836,14 @@ a {
   border: 1px solid var(--line);
   border-radius: 999px;
   box-shadow: 0 6px 18px rgba(26, 26, 23, 0.14);
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.growth-bird:hover {
+  border-color: var(--accent);
 }
 
 .growth-bird__emoji {
@@ -905,19 +913,33 @@ a {
   }
 }
 
-.growth-bird__toast {
+.growth-bird__bubble {
   position: absolute;
   right: 0;
   bottom: 100%;
-  margin-bottom: 10px;
-  background: var(--accent);
-  color: #fff;
+  margin-bottom: 12px;
+  width: max-content;
+  max-width: 220px;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--line);
   font-size: 12px;
-  font-weight: 700;
-  padding: 6px 12px;
-  border-radius: 8px;
-  white-space: nowrap;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 8px 12px;
+  border-radius: 12px;
+  white-space: normal;
+  box-shadow: 0 6px 16px rgba(26, 26, 23, 0.14);
   animation: growth-bird-toast 2.2s ease forwards;
+}
+
+.growth-bird__bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 22px;
+  border: 6px solid transparent;
+  border-top-color: #fff;
 }
 
 @keyframes growth-bird-toast {
@@ -943,7 +965,7 @@ a {
     animation: none;
   }
   .growth-bird__burst,
-  .growth-bird__toast {
+  .growth-bird__bubble {
     animation: none;
   }
 }
